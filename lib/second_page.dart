@@ -41,7 +41,7 @@ class _SecondPageState extends State<SecondPage> {
                                         ? 'I taste victory...'
                                         : 'The human is mine!!!',
                 style: const TextStyle(
-                  fontSize: 40,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   shadows: [
@@ -55,21 +55,64 @@ class _SecondPageState extends State<SecondPage> {
                 textAlign: TextAlign.center,
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
 
-              Slider(
-                min: 0,
-                max: 100,
-                value: _counter.toDouble(),
-                onChanged: (double value) {
-                  setState(() {
-                    _counter = value.toInt();
-                  });
-                },
-                activeColor: Colors.red,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final double availableWidth = constraints.maxWidth;
+                    const double emojiSize = 36;
+                    final double maxLeft = (availableWidth - emojiSize).clamp(0.0, availableWidth);
+                    final double left = (_counter / 100) * maxLeft;
+
+                    return SizedBox(
+                      height: 100,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Positioned(
+                            left: left,
+                            top: 0,
+                            child: Text(
+                              '🧟‍♂️',
+                              style: TextStyle(fontSize: emojiSize),
+                            ),
+                          ),
+
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: Text(
+                              '🧠',
+                              style: TextStyle(fontSize: emojiSize),
+                            ),
+                          ),
+
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            child: Slider(
+                              min: 0,
+                              max: 100,
+                              value: _counter.toDouble(),
+                              onChanged: (double value) {
+                                setState(() {
+                                  _counter = value.toInt();
+                                });
+                              },
+                              activeColor: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 40),
 
               ElevatedButton(
                 onPressed: () {
