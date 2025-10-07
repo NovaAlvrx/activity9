@@ -161,12 +161,6 @@ class _SecondPageState extends State<SecondPage> {
                 child: const Text('RETREAT'),
               ),
               const SizedBox(height: 12),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('Back to Main Page'),
-              ),
             ],
           ),
         ],
