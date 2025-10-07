@@ -18,7 +18,7 @@ class _SecondPageState extends State<SecondPage> {
         children: [
           SizedBox.expand(
             child: Image.asset(
-              'assets/halloween2.jpg',
+              'assets/halloween3.jpg',
               fit: BoxFit.cover,
             ),
           ),
